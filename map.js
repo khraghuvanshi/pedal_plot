@@ -74,32 +74,32 @@ map.on('load', async () => {
 
           let stations = jsonData.data.stations;
           console.log('Stations Array:', stations);
+
+          const svg = d3.select('#map').select('svg');
+
+          const circles = svg.selectAll('circle')
+            .data(stations)
+            .enter()
+            .append('circle')
+            .attr('r', 5)               // Radius of the circle
+            .attr('fill', 'steelblue')  // Circle fill color
+            .attr('stroke', 'white')    // Circle border color
+            .attr('stroke-width', 1)    // Circle border thickness
+            .attr('opacity', 0.8);      // Circle opacity
+          
+          // Initial position update when map loads
+          updatePositions();
+
+          map.on('move', updatePositions);     // Update during map movement
+          map.on('zoom', updatePositions);     // Update during zooming
+          map.on('resize', updatePositions);   // Update on window resize
+          map.on('moveend', updatePositions);  // Final adjustment after movement ends
       } catch (error) {
           console.error('Error loading JSON:', error); // Handle errors
       }
 
     // let stations = jsonData.data.stations;
     // console.log('Stations Array:', stations);
-
-    const svg = d3.select('#map').select('svg');
-
-    const circles = svg.selectAll('circle')
-      .data(stations)
-      .enter()
-      .append('circle')
-      .attr('r', 5)               // Radius of the circle
-      .attr('fill', 'steelblue')  // Circle fill color
-      .attr('stroke', 'white')    // Circle border color
-      .attr('stroke-width', 1)    // Circle border thickness
-      .attr('opacity', 0.8);      // Circle opacity
-    
-    // Initial position update when map loads
-    updatePositions();
-
-    map.on('move', updatePositions);     // Update during map movement
-    map.on('zoom', updatePositions);     // Update during zooming
-    map.on('resize', updatePositions);   // Update on window resize
-    map.on('moveend', updatePositions);  // Final adjustment after movement ends
 
     });
 
