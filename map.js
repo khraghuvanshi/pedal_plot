@@ -21,6 +21,13 @@ function getCoords(station) {
   return { cx: x, cy: y };  // Return as object for use in SVG attributes
 }
 
+ // Function to update circle positions when the map moves/zooms
+function updatePositions() {
+  circles
+    .attr('cx', d => getCoords(d).cx)  // Set the x-position using projected coordinates
+    .attr('cy', d => getCoords(d).cy); // Set the y-position using projected coordinates
+}
+
 
 map.on('load', async () => { 
     map.addSource('boston_route', {
@@ -82,12 +89,7 @@ map.on('load', async () => {
       .attr('stroke', 'white')    // Circle border color
       .attr('stroke-width', 1)    // Circle border thickness
       .attr('opacity', 0.8);      // Circle opacity
-     // Function to update circle positions when the map moves/zooms
-    function updatePositions() {
-      circles
-        .attr('cx', d => getCoords(d).cx)  // Set the x-position using projected coordinates
-        .attr('cy', d => getCoords(d).cy); // Set the y-position using projected coordinates
-    }
+    
     // Initial position update when map loads
     updatePositions();
 
