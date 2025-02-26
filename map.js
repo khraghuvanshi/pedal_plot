@@ -71,12 +71,15 @@ map.on('load', async () => {
           const jsonData = await d3.json(jsonurl);
           
           console.log('Loaded JSON Data:', jsonData); // Log to verify structure
+
+          let stations = jsonData.data.stations;
+          console.log('Stations Array:', stations);
       } catch (error) {
           console.error('Error loading JSON:', error); // Handle errors
       }
 
-    let stations = jsonData.data.stations;
-    console.log('Stations Array:', stations);
+    // let stations = jsonData.data.stations;
+    // console.log('Stations Array:', stations);
 
     const svg = d3.select('#map').select('svg');
 
