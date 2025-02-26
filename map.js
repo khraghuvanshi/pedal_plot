@@ -15,13 +15,6 @@ const map = new mapboxgl.Map({
   maxZoom: 18 // Maximum allowed zoom
 });
 
- // Function to update circle positions when the map moves/zooms
-function updatePositions() {
-  circles
-    .attr('cx', d => getCoords(d).cx)  // Set the x-position using projected coordinates
-    .attr('cy', d => getCoords(d).cy); // Set the y-position using projected coordinates
-}
-
 function getCoords(station) {
   const point = new mapboxgl.LngLat(+station.lon, +station.lat);  // Convert lon/lat to Mapbox LngLat
   const { x, y } = map.project(point);  // Project to pixel coordinates
@@ -89,7 +82,12 @@ map.on('load', async () => {
       .attr('stroke', 'white')    // Circle border color
       .attr('stroke-width', 1)    // Circle border thickness
       .attr('opacity', 0.8);      // Circle opacity
-
+     // Function to update circle positions when the map moves/zooms
+    function updatePositions() {
+      circles
+        .attr('cx', d => getCoords(d).cx)  // Set the x-position using projected coordinates
+        .attr('cy', d => getCoords(d).cy); // Set the y-position using projected coordinates
+    }
     // Initial position update when map loads
     updatePositions();
 
