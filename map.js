@@ -36,22 +36,22 @@ map.on('load', async () => {
     map.addSource('cambridge_route', {
         type: 'geojson',
         data: 'https://raw.githubusercontent.com/cambridgegis/cambridgegis_data/main/Recreation/Bike_Facilities/RECREATION_BikeFacilities.geojson'
-    });
+      });
 
     map.addLayer({
       id: 'cambridge-bike-lanes',
       type: 'line',
       source: 'cambridge_route',
       paint: {
-        'line-color': '#007AFF',  // Blue for Cambridge
+        'line-color': 'green', 
         'line-width': 4,
         'line-opacity': 0.6
       }
-  });
+    });
 
     let jsonData;
         try {
-          const jsonurl = INPUT_BLUEBIKES_CSV_URL;
+          const jsonurl = 'https://dsc106.com/labs/lab07/data/bluebikes-stations.json';
           
           // Await JSON fetch
           const jsonData = await d3.json(jsonurl);
@@ -60,7 +60,9 @@ map.on('load', async () => {
       } catch (error) {
           console.error('Error loading JSON:', error); // Handle errors
       }
-  });
 
-  let stations = jsonData.data.stations;
-  console.log('Stations Array:', stations);
+    let stations = jsonData.data.stations;
+    console.log('Stations Array:', stations);
+    });
+
+ 
