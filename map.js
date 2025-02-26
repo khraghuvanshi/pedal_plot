@@ -83,7 +83,7 @@ map.on('load', async () => {
 
     const svg = d3.select('#map').select('svg');
 
-    circles = svg.selectAll('circle')
+    const circles = svg.selectAll('circle')
       .data(stations)
       .enter()
       .append('circle')
