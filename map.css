@@ -30,5 +30,35 @@ svg circle {
   stroke: white;
 }
 
+header {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+  padding: 1em;
+}
+
+header label {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+#time-slider {
+  width: 200px;
+  cursor: pointer;
+}
+
+#selected-time {
+  font-weight: bold;
+  display: block;
+}
+
+#any-time {
+  display: block;
+  color: #777;
+  font-style: italic;
+}
+
   
 
