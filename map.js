@@ -77,6 +77,11 @@ map.on('load', async () => {
 
     const svg = d3.select('#map').select('svg');
 
+    const radiusScale = d3
+      .scaleSqrt()
+      .domain([0, d3.max(stations, (d) => d.totalTraffic)])
+      .range([0, 25]);
+      
     const circles = svg.selectAll('circle')
       .data(stations)
       .enter()
@@ -87,7 +92,8 @@ map.on('load', async () => {
       .attr('stroke-width', 1)    // Circle border thickness
       .attr('opacity', 0.8);      // Circle opacity
 
-    
+
+      
  // Function to update circle positions when the map moves/zooms
     function updatePositions() {
       circles
@@ -131,14 +137,7 @@ map.on('load', async () => {
       station.departures = departures.get(id) ?? 0;
       station.totalTraffic = station.arrivals + station.departures;
       return station;
-    });
-
-
-  const radiusScale = d3
-    .scaleSqrt()
-    .domain([0, d3.max(stations, (d) => d.totalTraffic)])
-    .range([0, 25]);
-  
+    });  
 });
 
 
