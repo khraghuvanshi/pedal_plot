@@ -101,13 +101,22 @@ map.on('load', async () => {
 
       const tripsurl = 'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv';
 
-      let trips;
-      try {
-        trips = await d3.csv(tripsurl);
-        console.log('Loaded Trips Data:', trips);
-      } catch (error) {
-        console.error('Error loading Trips Data:', error);
-      }
+      let trips = await d3.csv(
+        'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv',
+        (trip) => {
+          trip.started_at = new Date(trip.started_at);
+          trip.ended_at = new Date(trip.ended_at);
+          return trip;
+        },
+      );
+
+      // let trips;
+      // try {
+      //   trips = await d3.csv(tripsurl);
+      //   console.log('Loaded Trips Data:', trips);
+      // } catch (error) {
+      //   console.error('Error loading Trips Data:', error);
+      // }
       
       const departures = d3.rollup(
         trips,
@@ -208,14 +217,7 @@ map.on('load', async () => {
     timeSlider.addEventListener('input', updateTimeDisplay);
     updateTimeDisplay();
 
-    trips = await d3.csv(
-      'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv',
-      (trip) => {
-        trip.started_at = new Date(trip.started_at);
-        trip.ended_at = new Date(trip.ended_at);
-        return trip;
-      },
-    );
+    KHSU
 
     function minutesSinceMidnight(date) {
       return date.getHours() * 60 + date.getMinutes();
