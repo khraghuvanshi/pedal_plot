@@ -92,15 +92,6 @@ map.on('load', async () => {
           console.error('Error loading JSON:', error); // Handle errors
       }
 
-      // Extract the stations array from the JSON data
-      // let stations = jsonData.data.stations;
-      const stations = computeStationTraffic(jsonData.data.stations, trips);
-      console.log('Stations Array:', stations);
-      // let stations = jsonData.data.stations;
-      // console.log('Stations Array:', stations);
-
-      const tripsurl = 'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv';
-
       let trips = await d3.csv(
         'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv',
         (trip) => {
@@ -109,6 +100,15 @@ map.on('load', async () => {
           return trip;
         },
       );
+
+      // Extract the stations array from the JSON data
+      // let stations = jsonData.data.stations;
+      const stations = computeStationTraffic(jsonData.data.stations, trips);
+      console.log('Stations Array:', stations);
+      // let stations = jsonData.data.stations;
+      // console.log('Stations Array:', stations);
+
+      //const tripsurl = 'https://dsc106.com/labs/lab07/data/bluebikes-traffic-2024-03.csv';
 
       // let trips;
       // try {
