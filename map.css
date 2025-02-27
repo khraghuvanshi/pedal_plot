@@ -24,5 +24,11 @@ html, body {
     height: 100%;
     pointer-events: none;
   }
+
+svg circle {
+  fill-opacity: 0.6;
+  stroke: white;
+}
+
   
 
