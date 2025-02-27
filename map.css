@@ -60,5 +60,50 @@ header label {
   font-style: italic;
 }
 
+time,
+em {
+  display: block;
+  justify-self: right;
+  font-size: 16px;
+}
+
+em {
+  color: #666;
+  font-style: italic;
+}
+
+input[type="range"] {
+  width: 400px;
+}
+
+
+/* Legend */
+.legend {
+  padding: 1rem;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.legend div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend div::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: color-mix(
+    in oklch,
+    steelblue calc(100% * var(--departure-ratio)),
+    darkorange
+  );
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
   
 
