@@ -70,7 +70,7 @@ map.on('load', async () => {
       }
 
       // Extract the stations array from the JSON data
-      const stations = jsonData.data.stations;
+      let stations = jsonData.data.stations;
       console.log('Stations Array:', stations);
       // let stations = jsonData.data.stations;
       // console.log('Stations Array:', stations);
@@ -81,7 +81,7 @@ map.on('load', async () => {
       .scaleSqrt()
       .domain([0, d3.max(stations, (d) => d.totalTraffic)])
       .range([0, 25]);
-      
+
     const circles = svg.selectAll('circle')
       .data(stations)
       .enter()
